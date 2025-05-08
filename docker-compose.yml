@@ -1,3 +1,6 @@
+# this is how youre docker-compose should look like, in my case i use the pluggin custom_libre_translate 
+# with the config for my Libre-Translate IP address
+
 version: '3.9'
 
 services:
@@ -9,22 +12,34 @@ services:
     environment:
       HOST: 0.0.0.0
       PORT: 4990
-      REQUIREMENTS_FILE: requirements.txt
+      OFFLINE_MODE: "true"
+
       CORE_CONFIG: >
         {
-          "default_translate_plugin":"google_translate",
-          "init_on_start":"",
-          "default_from_lang":"fr",
-          "default_to_lang":"en",
-          "api_keys_allowed":[],
-          "debug_input_output":false,
-          "allow_multithread":true,
-          "user_lang":"",
-          "cache_is_use":true,
-          "cache_save_every":5,
-          "cache_per_model":true,
-          "default_translate_router":{"fr->es":"no_translate"}
+          "allow_multithread": true,
+          "api_keys_allowed": [],
+          "cache_is_use": true,
+          "cache_per_model": true,
+          "cache_save_every": 5,
+          "debug_input_output": false,
+          "default_from_lang": "fr",
+          "default_to_lang": "en",
+          "default_translate_plugin": "custom_libre_translate",
+          "init_on_start": "",
+          "user_lang": "",
+          "v": "1.5"
         }
+
+      CUSTOM_LIBRE_TRANSLATE_CONFIG: >
+        {
+          "custom_url": "http://192.168.1.207:8090/",
+          "v": "1.0"
+        }
+
     volumes:
       - ./options:/app/options
+      - pip_cache:/root/.cache/pip
     restart: unless-stopped
+
+volumes:
+  pip_cache:

@@ -7,7 +7,7 @@ COPY . /app/
 ENV HOST=0.0.0.0
 ENV PORT=4990
 ENV CORE_CONFIG=""
-ENV REQUIREMENTS_FILE=requirements.txt
+ENV OFFLINE_MODE=false
 
 ENV BLOOMZ_CONFIG=""
 ENV CUSTOM_LIBRE_TRANSLATE_CONFIG=""
@@ -38,5 +38,13 @@ CMD if [ -f "$REQUIREMENTS_FILE" ]; then \
       pip install --no-cache-dir -r "$REQUIREMENTS_FILE"; \
     else \
       echo "Aucun fichier $REQUIREMENTS_FILE trouvé. Skip install."; \
+    fi && \
+    if [ "$OFFLINE_MODE" = "true" ]; then \
+      if [ -f "requirements-offline.txt" ]; then \
+        echo "Mode offline activé, installation des dépendances offline..."; \
+        pip install --no-cache-dir -r requirements-offline.txt; \
+      else \
+        echo "Mode offline activé mais requirements-offline.txt introuvable."; \
+      fi; \
     fi && \
     python run_webapi.py
