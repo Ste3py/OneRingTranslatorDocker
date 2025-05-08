@@ -5,7 +5,7 @@ from fastapi import FastAPI, HTTPException
 from starlette.responses import Response, HTMLResponse
 import uvicorn
 import multiprocessing
-
+import os
 from starlette.staticfiles import StaticFiles
 
 from oneringcore import OneRingCore, version
@@ -163,6 +163,10 @@ async def whois():
     }}
 
 if __name__ == "__main__":
-    #multiprocessing.freeze_support()
+    # multiprocessing.freeze_support()
     print("Running OneRingTranslator v{0}, web server v{1}...".format(version, webapi_version))
-    uvicorn.run("run_webapi:app", host="127.0.0.1", port=4990, log_level="info")
+
+    host = os.getenv("HOST", "127.0.0.1")
+    port = int(os.getenv("PORT", 4990))
+
+    uvicorn.run("run_webapi:app", host=host, port=port, log_level="info")

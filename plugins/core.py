@@ -1,6 +1,7 @@
 # Core plugin
 # author: Vladislav Janvarev
-
+import os
+import json
 from oneringcore import OneRingCore
 
 # start function
@@ -33,7 +34,20 @@ def start(core:OneRingCore):
     return manifest
 
 def start_with_options(core:OneRingCore, manifest:dict):
-    #print(manifest["options"])
+    # Check if CORE_CONFIG env exists
+    core_config_env = os.getenv('CORE_CONFIG')
+
+    if core_config_env:
+        print("== CORE_CONFIG détecté, écriture dans options/core.json ==")
+        try:
+            options_env = json.loads(core_config_env)
+            os.makedirs("options", exist_ok=True)
+            with open("options/core.json", "w", encoding="utf-8") as f:
+                json.dump(options_env, f, indent=2, ensure_ascii=False)
+            manifest["options"] = options_env
+        except Exception as e:
+            print("Erreur lors de l'écriture du core.json à partir de CORE_CONFIG :", e)
+
     options = manifest["options"]
 
     core.default_translator = options["default_translate_plugin"]
