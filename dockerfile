@@ -33,12 +33,8 @@ ENV VSEGPT_CHAT_CONFIG=""
 EXPOSE ${PORT}
 
 
-CMD if [ -f "$REQUIREMENTS_FILE" ]; then \
-      echo "Installation des dépendances depuis $REQUIREMENTS_FILE..."; \
-      pip install --no-cache-dir -r "$REQUIREMENTS_FILE"; \
-    else \
-      echo "Aucun fichier $REQUIREMENTS_FILE trouvé. Skip install."; \
-    fi && \
+CMD echo "Installation des dépendances requirements.txt..."; \
+    pip install --no-cache-dir -r requirements.txt; \
     if [ "$OFFLINE_MODE" = "true" ]; then \
       if [ -f "requirements-offline.txt" ]; then \
         echo "Mode offline activé, installation des dépendances offline..."; \
@@ -48,3 +44,4 @@ CMD if [ -f "$REQUIREMENTS_FILE" ]; then \
       fi; \
     fi && \
     python run_webapi.py
+

@@ -4,12 +4,39 @@
 
 **This fork goal is to make OneRingTranslator running inside a docker container**
 
-| ENV VAR  | Default Value | Description |
-| ------------- | ------------- | ------------- |
-| HOST  | 0.0.0.0  | IP address of the WebUI  |
-| PORT  | 4990 | Port of the WebUI  |
-| CORE_CONFIG  | ""  | Here you can put custom json for the core.json, if empty it will use the default one.  |
-| REQUIREMENTS_FILE  | requirements.txt  | the "version" of the app if you use "requirements.txt" for Online translation and "requirements-offline.txt" if you plan to use offline translation |
+
+
+Every JSON file in the app has a default state.  
+If you don't set the corresponding ENV variable for a plugin, it will load its default values.  
+If you set the ENV variable, the values will overwrite the defaults at runtime.  
+So, if you don't want to overwrite a JSON, just leave the ENV variable as "" (empty).
+
+| ENV VAR                         | Default Value | Description                                       |
+|--------------------------------|---------------|---------------------------------------------------|
+| HOST                           | 0.0.0.0       | IP address of the WebUI                           |
+| PORT                           | 4990          | Port of the WebUI                                 |
+| OFFLINE_MODE             | false | can be set on true and gonna download the requirements-offline.txt    |
+| CORE_CONFIG                    | ""            | JSON for core.json                                |
+| BLOOMZ_CONFIG                  | ""            | JSON for bloomz.json                              |
+| CUSTOM_LIBRE_TRANSLATE_CONFIG  | ""            | JSON for custom_libre_translate.json              |
+| DEEPL_CONFIG                   | ""            | JSON for deepl.json                               |
+| FB_MBART50_CONFIG              | ""            | JSON for fb_mbart50.json                         |
+| FB_NLLB_CTRANSLATE2_CONFIG     | ""            | JSON for fb_nllb_ctranslate2.json                |
+| FB_NLLB_TRANSLATE_CONFIG       | ""            | JSON for fb_nllb_translate.json                  |
+| GEMINI_CHAT_CONFIG             | ""            | JSON for gemini_chat.json                        |
+| GOOGLE_TRANSLATE_CONFIG        | ""            | JSON for google_translate.json                   |
+| KOBOLDAPI_TRANSLATE_CONFIG     | ""            | JSON for koboldapi_translate.json                |
+| LIBRE_TRANSLATE_CONFIG         | ""            | JSON for libre_translate.json                    |
+| LINGVANEX_CONFIG               | ""            | JSON for lingvanex.json                          |
+| MULTI_SOURCES_CONFIG           | ""            | JSON for multi_sources.json                      |
+| NO_TRANSLATE_CONFIG            | ""            | JSON for no_translate.json                       |
+| NO_TRANSLATE2_CONFIG           | ""            | JSON for no_translate2.json                      |
+| OPENAI_CHAT_CONFIG             | ""            | JSON for openai_chat.json                        |
+| OPUS_MT_CONFIG                 | ""            | JSON for opus_mt.json                            |
+| T5_MT_CONFIG                   | ""            | JSON for t5_mt.json                              |
+| USE_MID_LANG_CONFIG            | ""            | JSON for use_mid_lang.json                       |
+| VSEGPT_CHAT_CONFIG             | ""            | JSON for vsegpt_chat.json                       |
+
 
 I'm not gonna put the img on docker hub. _(yet)_ 
 
