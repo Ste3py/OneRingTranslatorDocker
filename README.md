@@ -5,7 +5,7 @@
 **This fork goal is to make OneRingTranslator running inside a docker container**
 
 | ENV VAR  | Default Value | Description |
-| ------------- | ------------- |
+| ------------- | ------------- | ------------- |
 | HOST  | 0.0.0.0  | IP address of the WebUI  |
 | PORT  | 4990 | Port of the WebUI  |
 | CORE_CONFIG  | ""  | Here you can put custom json for the core.json, if empty it will use the default one.  |
