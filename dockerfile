@@ -29,16 +29,17 @@ ENV T5_MT_CONFIG=""
 ENV USE_MID_LANG_CONFIG=""
 ENV VSEGPT_CHAT_CONFIG=""
 
+ENV PIP_CACHE_DIR=/cache/pip
 
 EXPOSE ${PORT}
 
 
 CMD echo "Installation des dépendances requirements.txt..."; \
-    pip install --no-cache-dir -r requirements.txt; \
+    pip install -r requirements.txt; \
     if [ "$OFFLINE_MODE" = "true" ]; then \
       if [ -f "requirements-offline.txt" ]; then \
         echo "Mode offline activé, installation des dépendances offline..."; \
-        pip install --no-cache-dir -r requirements-offline.txt; \
+        pip install -r requirements-offline.txt; \
       else \
         echo "Mode offline activé mais requirements-offline.txt introuvable."; \
       fi; \
