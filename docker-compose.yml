@@ -1,0 +1,30 @@
+version: '3.9'
+
+services:
+  onering:
+    build:
+      context: .
+    ports:
+      - "4990:4990"
+    environment:
+      HOST: 0.0.0.0
+      PORT: 4990
+      REQUIREMENTS_FILE: requirements.txt
+      CORE_CONFIG: >
+        {
+          "default_translate_plugin":"google_translate",
+          "init_on_start":"",
+          "default_from_lang":"fr",
+          "default_to_lang":"en",
+          "api_keys_allowed":[],
+          "debug_input_output":false,
+          "allow_multithread":true,
+          "user_lang":"",
+          "cache_is_use":true,
+          "cache_save_every":5,
+          "cache_per_model":true,
+          "default_translate_router":{"fr->es":"no_translate"}
+        }
+    volumes:
+      - ./options:/app/options
+    restart: unless-stopped
