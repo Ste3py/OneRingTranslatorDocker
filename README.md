@@ -38,7 +38,7 @@ So, if you don't want to overwrite a JSON, just leave the ENV variable as "" (em
 | VSEGPT_CHAT_CONFIG             | ""            | JSON for vsegpt_chat.json                       |
 
 
-I'm not gonna put the img on docker hub. _(yet)_ 
+[Available en docker hub](https://hub.docker.com/r/steepythefrenchmaker/oneringtranslatordocker)
 
 # ORIGINAL README
 
